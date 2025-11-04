@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthBar from './components/AuthBar.jsx';
 import Hero from './components/Hero.jsx';
 import ProductGrid from './components/ProductGrid.jsx';
 import RetroTerminalCTA from './components/RetroTerminalCTA.jsx';
@@ -16,6 +17,8 @@ export default function App() {
             'radial-gradient(ellipse at center, rgba(16,185,129,0.04) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.9) 100%), repeating-linear-gradient(0deg, rgba(16,185,129,0.03) 0, rgba(16,185,129,0.03) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 3px)'
         }}
       />
+
+      <AuthBar />
 
       <main className="relative z-10">
         <Hero />
