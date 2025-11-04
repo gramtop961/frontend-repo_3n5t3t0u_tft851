@@ -4,7 +4,10 @@ export default function Hero() {
   return (
     <section className="relative h-[65vh] w-full overflow-hidden">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/6e3K0n1bCkWvFpgV/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline
+          scene="https://prod.spline.design/Qe6dlWJktclXcUBS/scene.splinecode"
+          style={{ width: '100%', height: '100%' }}
+        />
       </div>
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/40 via-black/10 to-black" />
       <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex flex-col justify-end pb-10">
