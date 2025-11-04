@@ -1,69 +1,30 @@
-import React from 'react';
-
 const assets = [
-  { symbol: 'BTC', name: 'Bitcoin', price: 68231.21, change: +2.14 },
-  { symbol: 'ETH', name: 'Ethereum', price: 3685.42, change: -1.02 },
-  { symbol: 'SOL', name: 'Solana', price: 172.88, change: +5.66 },
-  { symbol: 'ADA', name: 'Cardano', price: 0.62, change: +0.84 },
-  { symbol: 'DOT', name: 'Polkadot', price: 7.82, change: -0.45 },
-  { symbol: 'AVAX', name: 'Avalanche', price: 41.35, change: +3.27 },
+  { symbol: 'BTC', name: 'Bitcoin', price: 26834.15, change: +2.4 },
+  { symbol: 'ETH', name: 'Ethereum', price: 1693.42, change: -1.1 },
+  { symbol: 'SOL', name: 'Solana', price: 22.57, change: +0.6 },
+  { symbol: 'ADA', name: 'Cardano', price: 0.26, change: +3.2 },
 ];
-
-function formatNumber(n) {
-  return n >= 1000 ? n.toLocaleString(undefined, { maximumFractionDigits: 2 }) : n.toFixed(2);
-}
 
 export default function ProductGrid() {
   return (
-    <section id="market" className="relative w-full bg-black py-16">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-8 flex items-end justify-between">
-          <div>
-            <h2 className="text-3xl font-bold text-emerald-300">Market</h2>
-            <p className="text-emerald-200/70">Live-looking demo prices for a neon trading floor vibe.</p>
-          </div>
-          <button className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200 transition hover:bg-emerald-500/20">
-            Refresh
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {assets.map((a) => (
-            <article
-              key={a.symbol}
-              className="group rounded-xl border border-emerald-500/20 bg-gradient-to-b from-emerald-500/5 to-transparent p-5 shadow-[0_0_0_1px_rgba(16,185,129,0.15)] transition hover:border-emerald-400/40 hover:shadow-[0_0_0_1px_rgba(16,185,129,0.35)]"
-            >
-              <header className="mb-4 flex items-center justify-between">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-lg font-semibold text-emerald-200">{a.symbol}</span>
-                  <span className="text-sm text-emerald-300/60">{a.name}</span>
-                </div>
-                <span
-                  className={
-                    'rounded-md px-2 py-0.5 text-xs ' +
-                    (a.change >= 0
-                      ? 'bg-emerald-500/15 text-emerald-300'
-                      : 'bg-red-500/15 text-red-300')
-                  }
-                >
-                  {a.change >= 0 ? '+' : ''}
-                  {a.change.toFixed(2)}%
-                </span>
-              </header>
-
-              <div className="mb-4 text-3xl font-bold text-emerald-100">${formatNumber(a.price)}</div>
-
-              <div className="flex items-center justify-between">
-                <button className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-emerald-200 transition hover:bg-emerald-500/20">
-                  Buy
-                </button>
-                <button className="rounded-md border border-emerald-400/20 px-4 py-2 text-emerald-300 transition hover:border-emerald-400/50">
-                  Details
-                </button>
+    <section id="market" className="max-w-6xl mx-auto px-4 py-10">
+      <h2 className="text-2xl font-semibold text-emerald-300 mb-6">Market</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {assets.map((a) => (
+          <div key={a.symbol} className="p-4 rounded-lg bg-neutral-900 border border-emerald-700/30">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-neutral-400">{a.name}</p>
+                <p className="font-mono text-lg text-white">{a.symbol}</p>
               </div>
-            </article>
-          ))}
-        </div>
+              <span className={`px-2 py-1 rounded text-xs ${a.change>=0?'bg-emerald-500/20 text-emerald-300':'bg-red-500/20 text-red-300'}`}>{a.change>=0?'+':''}{a.change}%</span>
+            </div>
+            <div className="mt-4 flex items-end justify-between">
+              <p className="text-2xl font-bold text-white">${a.price.toLocaleString()}</p>
+              <button className="px-3 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-sm">Buy</button>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

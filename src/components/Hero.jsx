@@ -1,53 +1,21 @@
-import React from 'react';
 import Spline from '@splinetool/react-spline';
-import { Shield, Zap } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative h-[90vh] w-full overflow-hidden bg-black">
-      {/* Spline 3D scene as full-bleed background */}
+    <section className="relative h-[65vh] w-full overflow-hidden">
       <div className="absolute inset-0">
-        <Spline
-          scene="https://prod.spline.design/Qe6dlWJktclXcUBS/scene.splinecode"
-          style={{ width: '100%', height: '100%' }}
-        />
+        <Spline scene="https://prod.spline.design/6e3K0n1bCkWvFpgV/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
-
-      {/* CRT vignette + scanlines overlay (non-interactive) */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(ellipse at center, rgba(16,185,129,0.08) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.95) 100%), repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0, rgba(0,0,0,0.25) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 3px)'
-        }}
-      />
-
-      {/* Content overlay */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center">
-        <div className="pointer-events-auto mx-auto max-w-4xl px-6 text-center">
-          <h1 className="mb-4 bg-gradient-to-b from-emerald-300 to-emerald-600 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent sm:text-6xl">
-            Neon Crypto Marketplace
-          </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-emerald-200/80">
-            Trade digital assets in a retro-futuristic terminal. Low latency. High vibes. Fully interactive 3D cover.
-          </p>
-
-          <div className="flex items-center justify-center gap-4">
-            <a
-              href="#market"
-              className="inline-flex items-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/10 px-5 py-3 text-emerald-200 transition hover:bg-emerald-500/20"
-            >
-              <Zap size={18} />
-              Explore Market
-            </a>
-            <a
-              href="#secure"
-              className="inline-flex items-center gap-2 rounded-md border border-emerald-400/30 px-5 py-3 text-emerald-300 transition hover:border-emerald-400/60"
-            >
-              <Shield size={18} />
-              Why Secure
-            </a>
-          </div>
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/40 via-black/10 to-black" />
+      <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex flex-col justify-end pb-10">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-emerald-400 to-emerald-600">Trade Crypto</span>
+          <span className="block text-white/80">in Retro Neon Style</span>
+        </h1>
+        <p className="mt-3 text-neutral-300 max-w-2xl">Experience a stylized marketplace with scanlines and a CRT glow. Secure auth, fast API, and a 3D cover powered by Spline.</p>
+        <div className="mt-6 flex gap-3">
+          <a href="#market" className="px-5 py-2 rounded bg-emerald-600 hover:bg-emerald-500 text-white">Explore Market</a>
+          <a href="#dashboard" className="px-5 py-2 rounded border border-emerald-500/50 text-emerald-300 hover:bg-emerald-500/10">Go to Dashboard</a>
         </div>
       </div>
     </section>

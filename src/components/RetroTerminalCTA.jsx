@@ -1,68 +1,36 @@
-import React from 'react';
-import { CreditCard, Lock, Zap } from 'lucide-react';
-
-const logs = [
-  '[SYS] initializing matching-engine…',
-  '[OK ] peers synced [12/12] latency: 12ms',
-  '[OK ] APM traces live. risk checks: PASS',
-  '[OK ] cold wallet multi-sig online',
-];
+import { Shield, Zap, CreditCard } from 'lucide-react';
 
 export default function RetroTerminalCTA() {
   return (
-    <section id="secure" className="relative w-full bg-black py-16">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Terminal */}
-          <div className="rounded-xl border border-emerald-500/30 bg-black/60 p-5 shadow-[inset_0_0_40px_rgba(16,185,129,0.08)]">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-red-500/80" />
-              <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
-              <span className="h-3 w-3 rounded-full bg-green-500/80" />
-              <span className="ml-2 text-xs uppercase tracking-widest text-emerald-400/70">/var/log/market</span>
-            </div>
-            <div className="h-48 overflow-hidden rounded-lg border border-emerald-500/20 bg-black/60 p-3 font-mono text-sm text-emerald-300">
-              {logs.map((l, i) => (
-                <div key={i} className="whitespace-pre">
-                  {l}
-                </div>
-              ))}
-              <div className="mt-2 animate-pulse">$ _</div>
-            </div>
+    <section className="relative py-12">
+      <div className="absolute inset-0 pointer-events-none opacity-25 mix-blend-overlay" style={{backgroundImage:'linear-gradient(rgba(16,185,129,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,.08) 1px, transparent 1px)', backgroundSize:'24px 24px'}} />
+      <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+        <div className="p-6 rounded-lg bg-black border border-emerald-700/30">
+          <div className="font-mono text-emerald-300 text-sm">$ tail -f system.log</div>
+          <div className="mt-3 h-48 overflow-hidden rounded bg-neutral-950 p-3 ring-1 ring-emerald-700/20">
+            <pre className="text-emerald-400 text-xs leading-relaxed">
+              {`[OK] Boot sequence complete\n[OK] Connected to chain nodes\n[OK] Latency: 24ms\n[OK] Orders queue synchronized\n[OK] Risk engine warmed\n[OK] User auth service online`}
+            </pre>
           </div>
-
-          {/* Feature bullets */}
-          <div className="grid content-center gap-6">
-            <div className="flex items-start gap-4">
-              <div className="mt-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-2 text-emerald-300">
-                <Zap size={20} />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-emerald-200">Ultra-low latency</h3>
-                <p className="text-emerald-200/70">Optimized order routing with sub-15ms matching for a snappy desk feel.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="mt-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-2 text-emerald-300">
-                <Lock size={20} />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-emerald-200">Security-first custody</h3>
-                <p className="text-emerald-200/70">Multi-sig cold storage with continuous monitoring and circuit breakers.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="mt-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-2 text-emerald-300">
-                <CreditCard size={20} />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-emerald-200">Frictionless checkout</h3>
-                <p className="text-emerald-200/70">On-ramp/off-ramp with instant settlement. Crypto should feel easy.</p>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div className="grid gap-4">
+          <Feature icon={<Shield className="text-emerald-400" size={18} />} title="Secure by design" desc="JWT auth and encrypted passwords keep your account safe." />
+          <Feature icon={<Zap className="text-emerald-400" size={18} />} title="Blazing fast" desc="Vite + FastAPI deliver instant feedback and low latency." />
+          <Feature icon={<CreditCard className="text-emerald-400" size={18} />} title="Simple checkout" desc="Streamlined purchase flows for premium assets." />
         </div>
       </div>
     </section>
+  );
+}
+
+function Feature({ icon, title, desc }) {
+  return (
+    <div className="p-5 rounded-lg bg-neutral-900 border border-emerald-700/30">
+      <div className="flex items-center gap-2 text-emerald-300">
+        {icon}
+        <h3 className="font-semibold">{title}</h3>
+      </div>
+      <p className="mt-2 text-neutral-300 text-sm">{desc}</p>
+    </div>
   );
 }

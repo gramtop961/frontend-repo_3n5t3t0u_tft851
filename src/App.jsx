@@ -1,31 +1,25 @@
-import React from 'react';
-import AuthBar from './components/AuthBar.jsx';
-import Hero from './components/Hero.jsx';
-import ProductGrid from './components/ProductGrid.jsx';
-import RetroTerminalCTA from './components/RetroTerminalCTA.jsx';
-import Footer from './components/Footer.jsx';
+import { useState } from 'react';
+import AuthBar from './components/AuthBar';
+import Hero from './components/Hero';
+import ProductGrid from './components/ProductGrid';
+import RetroTerminalCTA from './components/RetroTerminalCTA';
+import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
 
 export default function App() {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+
   return (
-    <div className="min-h-screen w-full bg-black text-emerald-100">
-      {/* Global CRT feel via a subtle vignette and scanlines (non-interactive overlay) */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(ellipse at center, rgba(16,185,129,0.04) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.9) 100%), repeating-linear-gradient(0deg, rgba(16,185,129,0.03) 0, rgba(16,185,129,0.03) 1px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 3px)'
-        }}
-      />
-
-      <AuthBar />
-
-      <main className="relative z-10">
+    <div className="min-h-screen bg-black text-neutral-200">
+      <div className="pointer-events-none fixed inset-0 opacity-[0.15]" style={{backgroundImage:'radial-gradient(circle at center, rgba(16,185,129,.25), transparent 60%)'}} />
+      <AuthBar onAuthChange={(u, t) => { setUser(u); setToken(t); }} />
+      <main className="pt-14">
         <Hero />
         <ProductGrid />
         <RetroTerminalCTA />
+        <Dashboard user={user} token={token} />
       </main>
-
       <Footer />
     </div>
   );
