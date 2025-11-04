@@ -2,22 +2,23 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="mt-12 border-t border-emerald-500/20 bg-black/60">
-      <div className="mx-auto max-w-6xl px-6 py-8 text-emerald-200/70">
-        <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+    <footer className="relative border-t border-emerald-400/20 bg-black/80">
+      <div className="mx-auto max-w-7xl px-6 py-10">
+        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="flex items-center gap-3">
-            <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            <span className="font-mono text-sm text-emerald-300">RETRO • CRYPTO • MARKET</span>
+            <div className="h-8 w-8 rounded-sm bg-emerald-400/20 ring-1 ring-emerald-400/50" />
+            <div className="text-emerald-300 font-semibold tracking-wide">RetroMarket</div>
           </div>
-          <nav className="flex flex-wrap gap-6 text-sm">
+          <nav className="flex items-center gap-6 text-sm text-emerald-200/70">
             <a href="#market" className="hover:text-emerald-300">Market</a>
-            <a href="#learn" className="hover:text-emerald-300">Learn</a>
-            <a href="#" className="hover:text-emerald-300">Status</a>
-            <a href="#" className="hover:text-emerald-300">Privacy</a>
+            <a href="#terminal" className="hover:text-emerald-300">Security</a>
+            <a href="#" className="hover:text-emerald-300">Fees</a>
+            <a href="#" className="hover:text-emerald-300">Support</a>
           </nav>
         </div>
-        <p className="mt-4 text-xs text-emerald-200/50">© {new Date().getFullYear()} Retro Crypto Market. For demo purposes only.</p>
+        <div className="mt-8 text-center text-xs text-emerald-200/50">© {new Date().getFullYear()} RetroMarket. All rights reserved.</div>
       </div>
+      <div className="pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-screen" style={{ backgroundImage: `linear-gradient(rgba(16,185,129,0.08) 1px, transparent 1px)`, backgroundSize: '100% 3px' }} />
     </footer>
   );
 }

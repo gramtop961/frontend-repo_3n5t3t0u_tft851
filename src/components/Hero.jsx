@@ -3,46 +3,48 @@ import Spline from '@splinetool/react-spline';
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-[70vh] min-h-[520px] overflow-hidden bg-black">
+    <section className="relative h-[80vh] w-full overflow-hidden bg-black">
+      {/* Spline 3D scene */}
       <div className="absolute inset-0">
         <Spline
-          scene="https://prod.spline.design/S4k-6fqjuV5AuVZe/scene.splinecode"
+          scene="https://prod.spline.design/LCm0hXc0vJwEwE3U/scene.splinecode"
           style={{ width: '100%', height: '100%' }}
         />
       </div>
 
-      {/* Soft vignette + gradient overlays that won't block Spline interaction */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80" />
-      <div className="pointer-events-none absolute inset-0 [box-shadow:inset_0_0_140px_40px_rgba(0,0,0,0.8)]" />
+      {/* Safety overlay gradients (non-blocking) */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/90" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-emerald-500/10 to-transparent" />
 
-      <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center px-6">
-        <div className="max-w-2xl text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-emerald-300/90 backdrop-blur">
+      {/* Content */}
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
+        <div className="max-w-2xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-black/40 px-4 py-1 text-emerald-300 backdrop-blur">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            Live crypto marketplace
+            Realtime crypto marketplace
           </div>
-          <h1 className="mt-5 font-[700] leading-tight text-4xl md:text-6xl text-emerald-300 drop-shadow-[0_0_30px_rgba(16,185,129,0.35)]">
-            Retro Crypto Market
+          <h1 className="text-4xl font-extrabold tracking-tight text-emerald-300 drop-shadow-sm sm:text-6xl">
+            Trade the future in retro style
           </h1>
-          <p className="mt-4 text-emerald-200/80 md:text-lg">
-            Buy and sell digital assets in a neon-green, old-computer inspired interface. Fast, secure, and fun.
+          <p className="mt-4 max-w-xl text-emerald-200/80">
+            Neon-green vibes on a dark canvas. Secure, fast, and beautifully nostalgic. Buy and sell top crypto assets with confidence.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#market"
-              className="rounded-md bg-emerald-500 px-5 py-3 font-medium text-black shadow-[0_0_25px_rgba(16,185,129,0.6)] transition hover:bg-emerald-400"
-            >
+            <a href="#market" className="group inline-flex items-center gap-2 rounded-lg border border-emerald-400/60 bg-emerald-500/10 px-5 py-3 font-medium text-emerald-200 transition hover:bg-emerald-500/20">
               Explore Market
+              <svg className="h-4 w-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+              </svg>
             </a>
-            <a
-              href="#learn"
-              className="rounded-md border border-emerald-500/50 bg-black/30 px-5 py-3 font-medium text-emerald-300 transition hover:bg-emerald-500/10"
-            >
-              Learn More
+            <a href="#terminal" className="inline-flex items-center gap-2 rounded-lg border border-emerald-400/20 bg-black/40 px-5 py-3 font-medium text-emerald-200/90 hover:border-emerald-400/40">
+              Why Us
             </a>
           </div>
         </div>
       </div>
+
+      {/* Scanline / CRT effect */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.08] mix-blend-screen" style={{ backgroundImage: `linear-gradient(rgba(16,185,129,0.08) 1px, transparent 1px)`, backgroundSize: '100% 3px' }} />
     </section>
   );
 }

@@ -1,82 +1,53 @@
 import React from 'react';
 
-const products = [
-  { symbol: 'BTC', name: 'Bitcoin', price: 67350, change: 1.2 },
-  { symbol: 'ETH', name: 'Ethereum', price: 3125, change: -0.8 },
-  { symbol: 'SOL', name: 'Solana', price: 158.44, change: 3.6 },
-  { symbol: 'ADA', name: 'Cardano', price: 0.48, change: 0.4 },
-  { symbol: 'AVAX', name: 'Avalanche', price: 36.2, change: -1.1 },
-  { symbol: 'DOGE', name: 'Dogecoin', price: 0.12, change: 8.9 },
+const demoCoins = [
+  { id: 'btc', name: 'Bitcoin', symbol: 'BTC', price: 67250.32, change: 2.4 },
+  { id: 'eth', name: 'Ethereum', symbol: 'ETH', price: 3120.11, change: -1.2 },
+  { id: 'sol', name: 'Solana', symbol: 'SOL', price: 168.45, change: 4.8 },
+  { id: 'ada', name: 'Cardano', symbol: 'ADA', price: 0.62, change: 0.9 },
+  { id: 'dot', name: 'Polkadot', symbol: 'DOT', price: 7.14, change: -0.7 },
+  { id: 'link', name: 'Chainlink', symbol: 'LINK', price: 14.92, change: 3.1 },
 ];
 
-function PriceTag({ value }) {
-  const formatted = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: value < 1 ? 'USD' : 'USD',
-    maximumFractionDigits: value < 1 ? 4 : 2,
-  }).format(value);
-  return <span>{formatted}</span>;
+function formatPrice(value) {
+  if (value >= 1000) return `$${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+  return `$${value.toFixed(2)}`;
 }
 
 export default function ProductGrid() {
   return (
-    <section id="market" className="relative mx-auto max-w-6xl px-6 py-12">
-      <div className="mb-6 flex items-end justify-between">
+    <section id="market" className="relative mx-auto max-w-7xl px-6 py-14">
+      <div className="mb-8 flex items-end justify-between">
         <div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-emerald-300">Market</h2>
-          <p className="mt-1 text-sm text-emerald-200/70">Tap a coin to start a purchase. Prices are for demo.</p>
+          <h2 className="text-2xl font-bold text-emerald-300">Market</h2>
+          <p className="mt-1 text-emerald-200/70">Top assets with live-like pricing (demo).</p>
         </div>
-        <div className="text-right">
-          <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">24h</span>
-        </div>
+        <div className="text-xs text-emerald-200/50">Data refreshed every view</div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => (
-          <article
-            key={p.symbol}
-            className="group rounded-lg border border-emerald-500/20 bg-black/50 p-5 shadow-[0_0_30px_rgba(16,185,129,0.08)] backdrop-blur transition hover:border-emerald-400/40 hover:shadow-[0_0_50px_rgba(16,185,129,0.25)]"
-          >
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {demoCoins.map((coin) => (
+          <div key={coin.id} className="group relative overflow-hidden rounded-xl border border-emerald-400/20 bg-black/60 p-5 shadow-[0_0_0_1px_rgba(16,185,129,0.08)_inset] transition hover:border-emerald-400/40">
             <div className="flex items-center justify-between">
-              <div className="flex items-baseline gap-2">
-                <span className="font-mono text-sm text-emerald-400/90">{p.symbol}</span>
-                <h3 className="text-lg font-medium text-emerald-200">{p.name}</h3>
+              <div>
+                <div className="text-sm uppercase tracking-wider text-emerald-400/80">{coin.symbol}</div>
+                <div className="text-lg font-semibold text-emerald-200">{coin.name}</div>
               </div>
-              <span
-                className={
-                  'rounded px-2 py-1 text-xs font-medium ' +
-                  (p.change >= 0
-                    ? 'bg-emerald-500/15 text-emerald-300'
-                    : 'bg-red-500/10 text-red-300')
-                }
-              >
-                {p.change >= 0 ? '+' : ''}{p.change}%
-              </span>
+              <div className="text-right">
+                <div className="text-xl font-bold text-emerald-300">{formatPrice(coin.price)}</div>
+                <div className={"text-sm " + (coin.change >= 0 ? 'text-emerald-400' : 'text-red-400')}>{coin.change >= 0 ? '+' : ''}{coin.change}%</div>
+              </div>
             </div>
 
-            <div className="mt-3 flex items-end justify-between">
-              <div className="text-2xl font-semibold text-emerald-300">
-                <PriceTag value={p.price} />
-              </div>
-              <button
-                className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300 transition hover:bg-emerald-500/20"
-                onClick={() => alert(`Buying ${p.symbol} coming soon!`)}
-              >
+            <div className="mt-5 flex items-center justify-between">
+              <div className="text-xs text-emerald-200/60">Instant checkout</div>
+              <button className="rounded-md border border-emerald-400/50 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-200 transition hover:bg-emerald-500/20">
                 Buy
               </button>
             </div>
 
-            <div className="mt-4 h-1.5 w-full overflow-hidden rounded bg-emerald-500/10">
-              <div
-                className="h-full bg-emerald-400 transition-all duration-700 group-hover:w-[85%]"
-                style={{ width: `${Math.min(95, Math.max(15, Math.abs(p.change) * 8))}%` }}
-              />
-            </div>
-
-            <p className="mt-3 text-xs text-emerald-200/60">
-              Status: <span className="text-emerald-300">ONLINE</span> · Fees from 0.1%
-            </p>
-          </article>
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(16,185,129,0.08), transparent 40%)' }} />
+          </div>
         ))}
       </div>
     </section>
